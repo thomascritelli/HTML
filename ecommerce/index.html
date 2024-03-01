@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esempio Sito Ecommerce</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .product {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .product a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Sito Ecommerce</h1>
+    </header>
+
+    <section>
+        <div class="product">
+            <a href="src/products/prodotto1.html" aria-disabled="true">
+                <img src="prodotto1.jpg" alt="Prodotto 1">
+                <h2>Prodotto 1</h2>
+                <p>Descrizione del prodotto 1.</p>
+                <p>Prezzo: $50.00</p>
+                <p style="color: red;">PRODOTTO NON DISPONIBILE!</p>
+            </a>
+        </div>
+
+        <div class="product">
+            <a href="pagina_prodotto2.html">
+                <img src="prodotto2.jpg" alt="Prodotto 2">
+                <h2>Prodotto 2</h2>
+                <p>Descrizione del prodotto 2.</p>
+                <p>Prezzo: $40.00</p>
+            </a>
+        </div>
+
+        <!-- Aggiungi più prodotti secondo necessità -->
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sito Ecommerce. Tutti i diritti riservati.</p>
+    </footer>
+
+</body>
+</html>
