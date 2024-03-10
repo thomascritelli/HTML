@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jquery-3.3.1.js"></script>
+    <script src="callAPI.js"></script>  
+    <title>Canzoni Ascoltate di Recente</title>
+</head>
+<body>
+    <div id = "recentlyPlayed">
+        <table border="1" id="recently">
+            <tr>
+                <th>Artista</th>
+                <th>Titolo</th>
+                <th>Album</th>
+                <th>Link</th>
+                <th>Copertina</th>
+                <th>Ascolta</th>
+            </tr>
+        </table>
+    </div>
+    <button onclick="back()" id ="comeback" hidden>Torna indietro</button>
+    <div id="albumSong" hidden>
+        <table border="1" id="albumSongs">
+            <tr>
+                <th>Ascolta</th>
+                <th>Titolo</th>
+                <th>Durata</th>
+            </tr>
+        </table>
+    </div>
+
+    <div id="spotifyPlayer"></div>
+    
+    
+</body>
+</html>
