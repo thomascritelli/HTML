@@ -20,8 +20,11 @@
             </tr>
         </table>
     </div>
-    <button onclick="back()" id ="comeback" hidden>Torna indietro</button>
-    <div id="albumSong" hidden>
+    
+    <div id="album" hidden>
+        <button onclick='renderTable([recentlyPlayedApiUrl, "recentlyPlayed"])' id ="comeback">Torna indietro</button>
+        <br>
+        <div id = "albumInfo"></div>
         <table border="1" id="albumSongs">
             <tr>
                 <th>Ascolta</th>

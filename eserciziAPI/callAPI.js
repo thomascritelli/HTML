@@ -1,4 +1,4 @@
-var access_token = "BQBVlZhn3znSrW1d37KKcrfjn4VERsWSdoA9HxXJsgRS9ddQ12cyahHuo-h_mIw2cSKXE5-GN4m3I6bG5SqMvM-uHJtnSghDiOjclZhm8-BP7msWvlsE3Y6W_WXHK-L1Fav3BaMr6fbTN7Moh403bQuWJdhZ8RxBCunVdO-5bLP7ceaP-MiQZR_7E1OEhVf0-OEtdIb64A";
+var access_token = "BQAWy4LQyhrmLnGElbDvYtxGcYsFARRPrEUCdA1P6fsqd6irHT_WXJ0QlTM6pgFkt95cUeUWCKvyBpCP7JQfqbxjXmeVEROrW868PY39-OmgHpM4I2HjOvHwoZuXo04QtwujNXcu0U0nsYJKUOw15jDtgw2wyEuBsrWc69FX3ffPlCNeDROIKQyrcZ3tUaYgSPtDsvLI2A";
 var recentlyPlayedApiUrl = 'https://api.spotify.com/v1/me/player/recently-played';
 async function getJSON(apiLink){
     try{
@@ -40,7 +40,7 @@ async function renderTable(richiesta){
         if (richiesta[1] == "recentlyPlayed"){
             let tbody = "";
             document.getElementById("recentlyPlayed").hidden = false;
-            document.getElementById("albumSong").hidden = true;
+            document.getElementById("album").hidden = true;
             songs = songs.items;
             for (let i = 0; i < songs.length; i++){
                 tbody += `<tr>
@@ -58,32 +58,23 @@ async function renderTable(richiesta){
             var img = songs.images[0].url;
             var title = songs.name;
             songs = songs.tracks.items;
-            // <img src='${img}' alt ='copertina album' width='50'>
-            document.getElementById("comeback").hidden = false;
             document.getElementById("recentlyPlayed").hidden = true;
-            document.getElementById("albumSong").hidden = false;
-            var albumSong = document.getElementById("albumSong");
-            albumSong.innerHTML = `<img src='${img}' alt = 'copertina album' width='50'><h3>${title}</h3`;
+            document.getElementById("album").hidden = false;
+            var albumSong = document.getElementById("albumInfo");
+            albumSong.innerHTML = `<img src="${img}" alt = "copertina album" width=200> <h3>${title}</h3`;
+
             for (let i = 0; i < songs.length; i++){
-                tbody += `<tr>
-                <td><button onclick="playSong('${songs[i].id}', '${songs[i].name}')">Play</button></td></tr></tr>
+                tbody += `<tr><td><button onclick="playSong('${songs[i].id}', '${songs[i].name}')">Play</button></td>
                             <td>${songs[i].name}</td>
-                            <td>${songs[i].duration_ms}</td>`;
+                            <td>${songs[i].duration_ms}</td></tr>`;
                             
             }
             const tableRow = document.getElementById("albumSongs");
-            tableRow.innerHTML = tbody;
+            tableRow.innerHTML += tbody;
         }
-        const tableRow = document.getElementById('recently');
-        tableRow.innerHTML += tbody;
     } catch (error) {
         console.error('Errore durante la visualizzazione dei dati:', error);
     }
-}
-
-async function back(){
-    renderTable([recentlyPlayedApiUrl, "recentlyPlayed"]);
-    document.getElementById("comeback").hidden = true;
 }
 
 renderTable([recentlyPlayedApiUrl, "recentlyPlayed"]);
