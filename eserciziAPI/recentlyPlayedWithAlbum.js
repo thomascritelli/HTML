@@ -1,4 +1,4 @@
-var access_token = "BQAWy4LQyhrmLnGElbDvYtxGcYsFARRPrEUCdA1P6fsqd6irHT_WXJ0QlTM6pgFkt95cUeUWCKvyBpCP7JQfqbxjXmeVEROrW868PY39-OmgHpM4I2HjOvHwoZuXo04QtwujNXcu0U0nsYJKUOw15jDtgw2wyEuBsrWc69FX3ffPlCNeDROIKQyrcZ3tUaYgSPtDsvLI2A";
+var access_token = "BQCrGy1XZySq6U0GzQdcPYTwugtGlT2BvzCx7UhsT1fMq9NO_DVSkKk_zTuQYV7NIC9FB8AEPVGcbOCUpiAND9HVmx8Ei6u0WQJAaJWMD587sMT1auUROgAAc-NgMqH_LG8K5GI_TKnjqbIfJlMOyqM7AEMz0It5e9XQb1CMQxwDVLn-5EebJk0jKdpgfAB-hzqLoJMFTg";
 var recentlyPlayedApiUrl = 'https://api.spotify.com/v1/me/player/recently-played';
 async function getJSON(apiLink){
     try{
@@ -18,6 +18,18 @@ async function getJSON(apiLink){
         return [];
     }
 
+}
+function msToTime(msDurata) {
+    var millisecondi = (msDurata%1000)/100
+        , secondi = Math.round((msDurata/1000)%60)
+        , minuti = Math.round((msDurata/(1000*60))%60)
+        , ore = (msDurata/(1000*60*60))%24;
+
+    ore = (ore < 10) ? "0" + ore : ore;
+    minuti = (minuti < 10) ? "0" + minuti : minuti;
+    secondi = (secondi < 10) ? "0" + secondi : secondi;
+
+    return minuti + ":" + secondi;
 }
 
 async function playSong(songId, songTitle) {
@@ -66,7 +78,7 @@ async function renderTable(richiesta){
             for (let i = 0; i < songs.length; i++){
                 tbody += `<tr><td><button onclick="playSong('${songs[i].id}', '${songs[i].name}')">Play</button></td>
                             <td>${songs[i].name}</td>
-                            <td>${songs[i].duration_ms}</td></tr>`;
+                            <td>${msToTime(songs[i].duration_ms)}</td></tr>`;
                             
             }
             const tableRow = document.getElementById("albumSongs");
