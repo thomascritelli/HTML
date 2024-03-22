@@ -1,4 +1,4 @@
-var access_token = "BQCrGy1XZySq6U0GzQdcPYTwugtGlT2BvzCx7UhsT1fMq9NO_DVSkKk_zTuQYV7NIC9FB8AEPVGcbOCUpiAND9HVmx8Ei6u0WQJAaJWMD587sMT1auUROgAAc-NgMqH_LG8K5GI_TKnjqbIfJlMOyqM7AEMz0It5e9XQb1CMQxwDVLn-5EebJk0jKdpgfAB-hzqLoJMFTg";
+var access_token = "BQAVloo08H1lIToRkcmvhy_g6jbTwzzzcGPPNRdbORQQOJa4jKnMUtFptFEV3KNtn-1y_2K3-XRw5ou8J3a85B94QGP3cfgtUAx4JqNDGQRW1ymmxwMdd0ZwmDdVAFEj1yqkBhp5gZM-8D1FLiKQS__aIttiy0xyrB2b1wMSK1YzS2Ep_TkqXRk4ECTfCo_1q6sflxsrIA";
 var recentlyPlayedApiUrl = 'https://api.spotify.com/v1/me/player/recently-played';
 async function getJSON(apiLink){
     try{
@@ -56,10 +56,9 @@ async function renderTable(richiesta){
             songs = songs.items;
             for (let i = 0; i < songs.length; i++){
                 tbody += `<tr>
-                            <td>${songs[i].track.artists[0].name}</td>
-                            <td>${songs[i].track.name}</td>
-                            <td>${songs[i].track.album.name}</td>
-                            <td><button onclick="renderTable(['${songs[i].track.album.href}','albumSongs'])">Piu info</button></td>
+                            <td><a href = "https://open.spotify.com/intl-it/artist/${songs[i].track.artists[0].id}">${songs[i].track.artists[0].name}</td>
+                            <td><a href = "https://open.spotify.com/intl-it/track/3ZOEytgrvLwQaqXreDs2Jx?si=${songs[i].track.id}">${songs[i].track.name}</td>
+                            <td><a onclick="renderTable(['${songs[i].track.album.href}','albumSongs'])">${songs[i].track.album.name}</td>
                             <td><img src='${songs[i].track.album.images[0].url}' alt= 'ciao' width=50></td>
                             <td><button onclick="playSong('${songs[i].track.id}', '${songs[i].track.name}')">Play</button></td></tr></tr>`;
             }
