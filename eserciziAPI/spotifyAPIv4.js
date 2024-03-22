@@ -1,4 +1,4 @@
-var access_token = "BQAoir1xeSAl3BQ3SiO7LE2X-zipOUvfTkIT9ybmgHbCPTwYgn0OMWOvhsUh8X-WaBEzIhqQcPd0omSrWp94TKTi67Zffk_RafwhRgOBi136p1sN0na_hv1hLNN2N4QQhpM6yW3hqNYZ9975OCN6p4z2QbDwHO05S-P48oSCBjxyRAtFNL6nO6SMhGraGI0NJma7xdnWRw";
+var access_token = "BQAVloo08H1lIToRkcmvhy_g6jbTwzzzcGPPNRdbORQQOJa4jKnMUtFptFEV3KNtn-1y_2K3-XRw5ou8J3a85B94QGP3cfgtUAx4JqNDGQRW1ymmxwMdd0ZwmDdVAFEj1yqkBhp5gZM-8D1FLiKQS__aIttiy0xyrB2b1wMSK1YzS2Ep_TkqXRk4ECTfCo_1q6sflxsrIA";
 var recentlyPlayedApiUrl = 'https://api.spotify.com/v1/me/player/recently-played';
 async function getJSON(apiLink){
     try{
@@ -58,9 +58,8 @@ async function renderTable(richiesta){
                 tbody += `<tr>
                             <td><a href = "https://open.spotify.com/intl-it/artist/${songs[i].track.artists[0].id}">${songs[i].track.artists[0].name}</td>
                             <td><a href = "https://open.spotify.com/intl-it/track/3ZOEytgrvLwQaqXreDs2Jx?si=${songs[i].track.id}">${songs[i].track.name}</td>
-                            <td><a onclick="renderTable(['${songs[i].track.album.href}','albumSongs'])">${songs[i].track.album.name}</td>
-                            <td><img src='${songs[i].track.album.images[0].url}' alt= 'ciao' width=50></td>
-                            <td><button onclick="playSong('${songs[i].track.id}', '${songs[i].track.name}')">Play</button></td></tr></tr>`;
+                            <td><a href = "renderTable(['${songs[i].track.album.href}','albumSongs'])">${songs[i].track.album.name}</td>
+                            <td><img src='${songs[i].track.album.images[0].url}' alt= 'ciao' width=50></td></tr>`;
             }
             const tableRow = document.getElementById('recently');
             tableRow.innerHTML += tbody;
@@ -76,9 +75,8 @@ async function renderTable(richiesta){
 
             for (let i = 0; i < songs.length; i++){
                 tbody += `<tr><td><button onclick="playSong('${songs[i].id}', '${songs[i].name}')">Play</button></td>
-                            <td>${songs[i].name}</td>
+                            <td><a href = "playSong('${songs[i].id}', '${songs[i].name}')">${songs[i].name}</td>
                             <td>${msToTime(songs[i].duration_ms)}</td></tr>`;
-                            
             }
             const tableRow = document.getElementById("albumSongs");
             tableRow.innerHTML += tbody;

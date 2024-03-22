@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jquery-3.3.1.js"></script>
+    <script src="spotifyAPIv3.js"></script>  
+    <title>Spotify API</title>
+</head>
+<body>
+    <div id = "recentlyPlayed">
+        <table border="1" id="recently">
+            <tr>
+                <th>Artista</th>
+                <th>Titolo</th>
+                <th>Album</th>
+                <th>Copertina</th>
+                <th>Ascolta</th>
+            </tr>
+        </table>
+    </div>
+    
+    <div id="album" hidden>
+        <button onclick='renderTable([recentlyPlayedApiUrl, "recentlyPlayed"])' id ="comeback">Torna indietro</button>
+        <br>
+        <div id = "albumInfo"></div>
+        <table border="1" id="albumSongs">
+            <tr>
+                <th>Ascolta</th>
+                <th>Titolo</th>
+                <th>Durata</th>
+            </tr>
+        </table>
+    </div>
+    <div id="spotifyPlayer"></div>
+</body>
+</html>
