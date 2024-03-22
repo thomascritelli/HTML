@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    </style>
+</head>
+<body>
+    <table id = "tbody1" "></table>
+    <table id = "tbody2" style="border:1cm;"></table>
+    
+
+    <script>
+        async function fetchUserData(){
+            const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+            const userData = await response.json();
+            return userData;
+        }
+
+        async function renderTable(){
+            try {
+                const jsonData = await fetchUserData();
+                riga = `<tr><td>userId</td><td>${jsonData["userId"]}</td></tr>
+                <tr><td>id</td><td>${jsonData["id"]}</td></tr>
+                <tr><td>title</td><td>${jsonData["title"]}</td></tr>`;
+                document.getElementById("tbody1").innerHTML = riga;
+                riga = ""
+                for (const chiave in jsonData){
+                    riga += `<tr><td>${chiave}</td><td>${jsonData[chiave]}</td></tr>`;
+                }
+                
+                document.getElementById("tbody2").innerHTML = riga;
+                    
+            }catch(error){
+                console.error('Errore durante il rendering della tabella: ',error);
+            }
+        }
+
+        renderTable();
+        
+
+        
+
+        
+    </script>
+</body>
+</html>
