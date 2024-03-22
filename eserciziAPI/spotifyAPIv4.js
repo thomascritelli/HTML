@@ -1,4 +1,4 @@
-var access_token = "BQAVloo08H1lIToRkcmvhy_g6jbTwzzzcGPPNRdbORQQOJa4jKnMUtFptFEV3KNtn-1y_2K3-XRw5ou8J3a85B94QGP3cfgtUAx4JqNDGQRW1ymmxwMdd0ZwmDdVAFEj1yqkBhp5gZM-8D1FLiKQS__aIttiy0xyrB2b1wMSK1YzS2Ep_TkqXRk4ECTfCo_1q6sflxsrIA";
+var access_token = "BQCwMkl2BLauQnPdgt45jLFHjLCOsjcqRsu9n6xy3Gc1nCCCcfl6bx4IJEU31auGN4qR6rg7vF9goATKTOyCc7ZQmYeZUOiQ8Nz1LBwBvH3-CVgLg6DfKFwllv9FRVi0wNE-Pn_rYjoKV6oQZZo1NScrpUgwhHXSfVMjg5kKPyGY4y1O2BRCLfpqnGG66s4Ke9YyDwL3lA";
 var recentlyPlayedApiUrl = 'https://api.spotify.com/v1/me/player/recently-played';
 async function getJSON(apiLink){
     try{
@@ -37,7 +37,7 @@ async function playSong(songId, songTitle) {
 
     const playerHtml = `
         <div>
-            <p>Stai ascoltando: ${songTitle}</p>
+            <p>Stai ascoltando: ${songTitle.replace(/%27/g, "'")}</p>
             <iframe src="https://open.spotify.com/embed/track/${songId}"
                     width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
             </iframe>
@@ -58,7 +58,7 @@ async function renderTable(richiesta){
                 tbody += `<tr>
                             <td><a href = "https://open.spotify.com/intl-it/artist/${songs[i].track.artists[0].id}">${songs[i].track.artists[0].name}</td>
                             <td><a href = "https://open.spotify.com/intl-it/track/3ZOEytgrvLwQaqXreDs2Jx?si=${songs[i].track.id}">${songs[i].track.name}</td>
-                            <td><a href = "renderTable(['${songs[i].track.album.href}','albumSongs'])">${songs[i].track.album.name}</td>
+                            <td><a onclick = "renderTable(['${songs[i].track.album.href}','albumSongs'])">${songs[i].track.album.name}</td>
                             <td><img src='${songs[i].track.album.images[0].url}' alt= 'ciao' width=50></td></tr>`;
             }
             const tableRow = document.getElementById('recently');
@@ -74,7 +74,7 @@ async function renderTable(richiesta){
             albumSong.innerHTML = `<img src="${img}" alt = "copertina album" width=200> <h3>${title}</h3`;
 
             for (let i = 0; i < songs.length; i++){
-                tbody += `<tr><td><button onclick="playSong('${songs[i].id}', '${songs[i].name}')">Play</button></td>
+                tbody += `<tr><td><button onclick="playSong('${songs[i].id}', '${songs[i].name.replace(/'/g, "%27")}')">Play</button></td>
                             <td><a href = "playSong('${songs[i].id}', '${songs[i].name}')">${songs[i].name}</td>
                             <td>${msToTime(songs[i].duration_ms)}</td></tr>`;
             }
